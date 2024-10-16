@@ -13,7 +13,7 @@ exports.create = (req, res) => {
 
   // Create a Lesson
   const lesson = {
-    tutorialId: req.params.tutorialId,
+    studentId: req.params.studentId,
     title: req.body.title,
     description: req.body.description,
     published: req.body.published ? req.body.published : false,
@@ -51,11 +51,11 @@ exports.findAll = (req, res) => {
       });
     });
 };
-// Retrieve all Lessons for a tutorial from the database.
-exports.findAllForTutorial = (req, res) => {
-  const tutorialId = req.params.tutorialId;
+// Retrieve all Lessons for a student from the database.
+exports.findAllForStudent = (req, res) => {
+  const studentId = req.params.studentId;
 
-  Lesson.findAll({ where: { tutorialId: tutorialId } })
+  Lesson.findAll({ where: { studentId: studentId } })
     .then((data) => {
       res.send(data);
     })
