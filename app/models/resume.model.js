@@ -5,25 +5,9 @@ module.exports = (sequelize, Sequelize) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    contact: {
-      
-    },
-    links: {
-      
-    },
     summary: {
       type: Sequelize.STRING(1000),
     },
-    education: {
-      
-    },
-    experience: {
-      
-    },
-    project: {
-      
-    },
-    
   });
   return Resume;
 };
