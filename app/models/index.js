@@ -49,6 +49,11 @@ db.session.belongsTo(
   { as: "user" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
+db.user.hasMany(
+  db.comment,
+  { as: "comment" },
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
 
 // foreign key for students
 db.user.hasOne(
@@ -183,11 +188,7 @@ db.comment.belongsTo(
   { as: "resume" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
-db.comment.hasOne( // assigns it to one teacher
-  db.user,
-  {as: "user"},
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
+
 
 
 // BELONGS TO
