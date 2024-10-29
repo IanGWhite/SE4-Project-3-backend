@@ -27,10 +27,17 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-require("./app/routes/auth.routes.js")(app);
+console.log('starting search for routes');
+require("./app/routes/auth.routes")(app);
+console.log('found auth routes');
 require("./app/routes/user.routes")(app);
+console.log('found user routes');
 require("./app/routes/student.routes")(app);
+console.log('found student routes');
 require("./app/routes/lesson.routes")(app);
+console.log('found lesson routes');
+require("./app/routes/resume.routes")(app);
+console.log('found resume routes');
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3015;
