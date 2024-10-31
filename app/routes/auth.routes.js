@@ -13,4 +13,5 @@ module.exports = (app) => {
   router.post("/logout", auth.logout);
 
   app.use("/resume-t5", router);
+  
 };
