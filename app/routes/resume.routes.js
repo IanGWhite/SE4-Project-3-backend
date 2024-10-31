@@ -4,8 +4,8 @@ module.exports = (app) => {
   var router = require("express").Router();
 
   // Create a new Resume for a Student
-  router.post("/:studentId/resumes/", [authenticate], resumes.create);
-//router.post("/makeResumeTest/");
+  //router.post("/:studentId/resumes/", [authenticate], resumes.create);
+  router.post("/:studentId/resumes/", resumes.create);
 
   // Retrieve all Resumes for a Student
   router.get(
