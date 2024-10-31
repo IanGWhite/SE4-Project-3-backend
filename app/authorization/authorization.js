@@ -34,6 +34,7 @@ authenticate = (req, res, next) => {
   }
 };
 
+
 const auth = {
   authenticate: authenticate,
 };
