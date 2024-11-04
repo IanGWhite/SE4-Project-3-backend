@@ -10,28 +10,21 @@ module.exports = (app) => {
   // Retrieve all Resumes for a Student
   router.get(
     "/:studentId/resumes/",
-    [authenticate],
     resumes.findAllForStudent
   );
 
-  // Retrieve all published Resumes for a Student
-  router.get(
-    "/:studentId/resumes/published",
-    [authenticate],
-    resumes.findAllPublished
-  );
-
   // Retrieve a single Resume with id
-  router.get("/:studentId/resumes/:id", [authenticate], resumes.findOne);
+  //router.get("/:studentId/resumes/:id", [authenticate], resumes.findOne);
+  router.get("/:studentId/resumes/:id", resumes.findOne);
 
   // Update a Resume with id
-  router.put("/:studentId/resumes/:id", [authenticate], resumes.update);
+  router.put("/:studentId/resumes/:id", resumes.update);
 
   // Delete a Resume with id
-  router.delete("/:studentId/resumes/:id", [authenticate], resumes.delete);
+  router.delete("/:studentId/resumes/:id", resumes.delete);
 
   // Delete all Resumes
-  router.delete("/:studentId/resumes/:id", [authenticate], resumes.deleteAll);
+  router.delete("/:studentId/resumes/deleteAll", resumes.deleteAll);
 
   app.use("/resume-t5/students", router);
 };
