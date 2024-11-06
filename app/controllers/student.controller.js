@@ -4,18 +4,16 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Student
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.firstName) {
     res.status(400).send({
-      message: "Content can not be empty!",
+      message: "Content can not be empty GRAAAHHH!",
     });
     return;
   }
   // Create a Student
   const student = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false,
-    userId: req.body.userId,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
   };
   // Save Student in the database
   Student.create(student)

@@ -8,6 +8,6 @@ module.exports = (sequelize, Sequelize) => {
     summary: {
       type: Sequelize.STRING(1000),
     },
-  });
+  },{ timestamps: false });
   return Resume;
 };

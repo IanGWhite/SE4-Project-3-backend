@@ -93,7 +93,7 @@ db.resume.belongsTo(
 db.resume.hasMany(
   db.award,
   {as: "award"},
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+  { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.award.belongsTo(
   db.resume,
@@ -104,7 +104,7 @@ db.award.belongsTo(
 db.resume.hasOne(
   db.contact,
   {as: "contact"},
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+  { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.contact.belongsTo(
   db.resume,
@@ -115,7 +115,7 @@ db.contact.belongsTo(
 db.resume.hasMany(
   db.education,
   {as: "education"},
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+  { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.education.belongsTo(
   db.resume,
@@ -126,7 +126,7 @@ db.education.belongsTo(
 db.resume.hasMany(
   db.experience,
   {as: "experience"},
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+  { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.experience.belongsTo(
   db.resume,
@@ -137,7 +137,7 @@ db.experience.belongsTo(
 db.resume.hasMany(
   db.interest,
   {as: "interest"},
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+  { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.interest.belongsTo(
   db.resume,
@@ -148,7 +148,7 @@ db.interest.belongsTo(
 db.resume.hasMany(
   db.link,
   {as: "link"},
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+  { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.link.belongsTo(
   db.resume,
@@ -159,7 +159,7 @@ db.link.belongsTo(
 db.resume.hasMany(
   db.project,
   {as: "project"},
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+  { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.project.belongsTo(
   db.resume,
@@ -170,7 +170,7 @@ db.project.belongsTo(
 db.resume.hasMany(
   db.skill,
   {as: "skill"},
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+  { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.skill.belongsTo(
   db.resume,
@@ -181,7 +181,7 @@ db.skill.belongsTo(
 db.resume.hasMany(
   db.comment,
   {as: "comment"},
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+  { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.comment.belongsTo(
   db.resume,

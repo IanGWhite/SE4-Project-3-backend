@@ -4,7 +4,8 @@ module.exports = (app) => {
   var router = require("express").Router();
 
   // Create a new Lesson for a Student
-  router.post("/:studentId/lessons/", [authenticate], lessons.create);
+  //router.post("/:studentId/lessons/", [authenticate], lessons.create);
+  router.post("/resumeMakeTest/", lessons.create);
 
   // Retrieve all Lessons for a Student
   router.get(
