@@ -30,13 +30,13 @@ db.resume = require("./resume.model.js")(sequelize, Sequelize);
 db.skill = require("./skill.model.js")(sequelize, Sequelize);
 db.comment = require("./comment.model.js")(sequelize, Sequelize);
 
-// db.resumeAward = require("./resumeAward.model.js")(sequelize, Sequelize);
-// db.resumeEducation = require("./resumeEducation.model.js")(sequelize, Sequelize);
-// db.resumeExperience = require("./resumeExperience.model.js")(sequelize, Sequelize);
-// db.resumeInterest = require("./resumeInterest.model.js")(sequelize, Sequelize);
-// db.resumeLink = require("./resumeLink.model.js")(sequelize, Sequelize);
-// db.resumeProject = require("./resumeProject.model.js")(sequelize, Sequelize);
-// db.resumeSkill = require("./resumeSkill.model.js")(sequelize, Sequelize);
+db.resumeAward = require("./resumeAward.model.js")(sequelize, Sequelize);
+db.resumeEducation = require("./resumeEducation.model.js")(sequelize, Sequelize);
+db.resumeExperience = require("./resumeExperience.model.js")(sequelize, Sequelize);
+db.resumeInterest = require("./resumeInterest.model.js")(sequelize, Sequelize);
+db.resumeLink = require("./resumeLink.model.js")(sequelize, Sequelize);
+db.resumeProject = require("./resumeProject.model.js")(sequelize, Sequelize);
+db.resumeSkill = require("./resumeSkill.model.js")(sequelize, Sequelize);
 
 // foreign key for session
 db.user.hasMany(
@@ -90,91 +90,91 @@ db.resume.belongsTo(
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 // RESUME HAS
-db.resume.hasMany(
+db.student.hasMany(
   db.award,
   {as: "award"},
   { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.award.belongsTo(
-  db.resume,
-  { as: "resume" },
+  db.student,
+  { as: "student" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-db.resume.hasOne(
+db.student.hasOne(
   db.contact,
   {as: "contact"},
   { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.contact.belongsTo(
-  db.resume,
-  { as: "resume" },
+  db.student,
+  { as: "student" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-db.resume.hasMany(
+db.student.hasMany(
   db.education,
   {as: "education"},
   { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.education.belongsTo(
-  db.resume,
-  { as: "resume" },
+  db.student,
+  { as: "student" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-db.resume.hasMany(
+db.student.hasMany(
   db.experience,
   {as: "experience"},
   { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.experience.belongsTo(
-  db.resume,
-  { as: "resume" },
+  db.student,
+  { as: "student" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-db.resume.hasMany(
+db.student.hasMany(
   db.interest,
   {as: "interest"},
   { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.interest.belongsTo(
-  db.resume,
-  { as: "resume" },
+  db.student,
+  { as: "student" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-db.resume.hasMany(
+db.student.hasMany(
   db.link,
   {as: "link"},
   { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.link.belongsTo(
-  db.resume,
-  { as: "resume" },
+  db.student,
+  { as: "student" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-db.resume.hasMany(
+db.student.hasMany(
   db.project,
   {as: "project"},
   { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.project.belongsTo(
-  db.resume,
-  { as: "resume" },
+  db.student,
+  { as: "student" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-db.resume.hasMany(
+db.student.hasMany(
   db.skill,
   {as: "skill"},
   { foreignKey: { allowNull: true }, onDelete: "CASCADE" }
 );
 db.skill.belongsTo(
-  db.resume,
-  { as: "resume" },
+  db.student,
+  { as: "student" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
@@ -191,83 +191,143 @@ db.comment.belongsTo(
 
 
 
-// BELONGS TO
-// db.resumeAward.belongsTo(
-//   db.resume,
-//   { as: "resume" },
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.contact.belongsTo(
-//   db.resume,
-//   { as: "resume" },
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeEducation.belongsTo(
-//   db.resume,
-//   { as: "resume" },
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeExperience.belongsTo(
-//   db.resume,
-//   { as: "resume" },
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeInterest.belongsTo(
-//   db.resume,
-//   { as: "resume" },
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeLink.belongsTo(
-//   db.resume,
-//   { as: "resume" },
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeProject.belongsTo(
-//   db.resume,
-//   { as: "resume" },
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeSkill.belongsTo(
-//   db.resume,
-//   { as: "resume" },
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
+//BELONGS TO
+db.resumeAward.belongsTo(
+  db.resume,
+  { as: "resume" },
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+db.resume.hasMany(
+  db.resumeAward,
+  {as: "resumeAward"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
 
-// // resume middleman has
-// db.resumeAward.hasMany(
-//   db.award,
-//   {as: "award"},
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeEducation.hasMany(
-//   db.education,
-//   {as: "education"},
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeExperience.hasMany(
-//   db.experience,
-//   {as: "experience"},
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeInterest.hasMany(
-//   db.interest,
-//   {as: "interest"},
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeLink.hasMany(
-//   db.link,
-//   {as: "link"},
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeProject.hasMany(
-//   db.project,
-//   {as: "project"},
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
-// db.resumeSkill.hasMany(
-//   db.skill,
-//   {as: "skill"},
-//   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-// );
+db.contact.belongsTo(
+  db.resume,
+  { as: "resume" },
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+db.resume.hasOne(
+  db.contact,
+  {as: "contact"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+db.resumeEducation.belongsTo(
+  db.resume,
+  { as: "resume" },
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+db.resume.hasMany(
+  db.resumeEducation,
+  {as: "resumeEducation"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+db.resumeExperience.belongsTo(
+  db.resume,
+  { as: "resume" },
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+db.resume.hasMany(
+  db.resumeExperience,
+  {as: "resumeExperience"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+db.resumeInterest.belongsTo(
+  db.resume,
+  { as: "resume" },
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+db.resume.hasMany(
+  db.resumeInterest,
+  {as: "resumeInterest"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+db.resumeLink.belongsTo(
+  db.resume,
+  { as: "resume" },
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+db.resume.hasMany(
+  db.resumeLink,
+  {as: "resumeLink"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+db.resumeProject.belongsTo(
+  db.resume,
+  { as: "resume" },
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+db.resume.hasMany(
+  db.resumeProject,
+  {as: "resumeProject"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+db.resumeSkill.belongsTo(
+  db.resume,
+  { as: "resume" },
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+db.resume.hasMany(
+  db.resumeSkill,
+  {as: "resumeSkill"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+
+// resume middleman has
+db.resumeAward.hasOne(
+  db.award,
+  {as: "award"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+db.resumeEducation.hasOne(
+  db.education,
+  {as: "education"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+
+db.resumeExperience.hasOne(
+  db.experience,
+  {as: "experience"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+
+db.resumeInterest.hasOne(
+  db.interest,
+  {as: "interest"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+
+db.resumeLink.hasOne(
+  db.link,
+  {as: "link"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+
+db.resumeProject.hasOne(
+  db.project,
+  {as: "project"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
+
+db.resumeSkill.hasOne(
+  db.skill,
+  {as: "skill"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+
 
 module.exports = db;
