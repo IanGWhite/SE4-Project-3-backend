@@ -38,6 +38,7 @@ require("./app/routes/lesson.routes")(app);
 console.log('found lesson routes');
 require("./app/routes/resume.routes")(app);
 console.log('found resume routes');
+require("./app/routes/award.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3025;
