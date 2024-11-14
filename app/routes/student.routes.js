@@ -7,6 +7,9 @@ module.exports = (app) => {
   //router.post("/", [authenticate], students.create);
   router.post("/", students.create);
 
+  // find all students
+  router.get("/", students.findAll);
+
   // Retrieve all Students for user
   router.get("/userStudent/:userId", students.findAllForUser);
 
