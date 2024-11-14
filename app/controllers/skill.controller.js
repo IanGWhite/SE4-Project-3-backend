@@ -1,7 +1,7 @@
 const db = require("../models");
-const Resume = db.resume;
+const Skill = db.skill;
 const Op = db.Sequelize.Op;
-// Create and Save a new Resume
+// Create and Save a new Skill
 exports.create = (req, res) => {
   // Validate request
   // if (!req.body.title) {
@@ -11,137 +11,137 @@ exports.create = (req, res) => {
   //   return;
   // }
 
-  // Create a Resume
-  const resume = {
-    summary: req.body.summary,
-    studentId: req.params.studentId
+  // Create a Skill
+  const skill = {
+    studentId: req.params.studentId,    
+    description: req.body.description,
   };
-  // Save Resume in the database
-  Resume.create(resume)
+  // Save Skill in the database
+  Skill.create(skill)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Resume.",
+          err.message || "Some error occurred while creating the Skill.",
       });
     });
 };
-// Retrieve all Resumes from the database.
+// Retrieve all Skills from the database.
 exports.findAll = (req, res) => {
-  const resumeId = req.query.resumeId;
-  var condition = resumeId
+  const skillId = req.query.skillId;
+  var condition = skillId
     ? {
-        resumeId: {
-          [Op.like]: `%${resumeId}%`,
+        skillId: {
+          [Op.like]: `%${skillId}%`,
         },
       }
     : null;
 
-  Resume.findAll({ where: condition })
+  Skill.findAll({ where: condition })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving resumes.",
+        message: err.message || "Some error occurred while retrieving skills.",
       });
     });
 };
-// Retrieve all Resumes for a student from the database.
+// Retrieve all Skills for a student from the database.
 exports.findAllForStudent = (req, res) => {
   const studentId = req.params.studentId;
 
-  Resume.findAll({ where: { studentId: studentId } })
+  Skill.findAll({ where: { studentId: studentId } })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving resumes.",
+        message: err.message || "Some error occurred while retrieving skills.",
       });
     });
 };
-// Find a single Resume with an id
+// Find a single Skill with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  Resume.findByPk(id)
+  Skill.findByPk(id)
     .then((data) => {
       if (data) {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Resume with id=${id}.`,
+          message: `Cannot find Skill with id=${id}.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Resume with id=" + id,
+        message: "Error retrieving Skill with id=" + id,
       });
     });
 };
-// Update a Resume by the id in the request
+// Update a Skill by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
-  Resume.update(req.body, {
+  Skill.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Resume was updated successfully.",
+          message: "Skill was updated successfully.",
         });
       } else {
         res.send({
-          message: `Cannot update Resume with id=${id}. Maybe Resume was not found or req.body is empty!`,
+          message: `Cannot update Skill with id=${id}. Maybe Skill was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Resume with id=" + id,
+        message: "Error updating Skill with id=" + id,
       });
     });
 };
-// Delete a Resume with the specified id in the request
-//todo: update to delete all items owned by resume (if not done automatically)
+// Delete a Skill with the specified id in the request
+//todo: update to delete all items owned by skill (if not done automatically)
 exports.delete = (req, res) => {
   const id = req.params.id;
-  Resume.destroy({
+  Skill.destroy({
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Resume was deleted successfully!",
+          message: "Skill was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete Resume with id=${id}. Maybe Resume was not found!`,
+          message: `Cannot delete Skill with id=${id}. Maybe Skill was not found!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Resume with id=" + id,
+        message: "Could not delete Skill with id=" + id,
       });
     });
 };
-// Delete all Resumes from the database.
+// Delete all Skills from the database.
 exports.deleteAll = (req, res) => {
-  Resume.destroy({
+  Skill.destroy({
     where: {},
     truncate: false,
   })
     .then((nums) => {
-      res.send({ message: `${nums} Resumes were deleted successfully!` });
+      res.send({ message: `${nums} Skills were deleted successfully!` });
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all resumes.",
+          err.message || "Some error occurred while removing all skills.",
       });
     });
 };

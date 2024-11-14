@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   const Comment = sequelize.define("comment", {
-    comment: {
+    summary: {
       type: Sequelize.STRING(1000),
     },
   });

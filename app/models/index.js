@@ -49,11 +49,7 @@ db.session.belongsTo(
   { as: "user" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
-db.user.hasMany(
-  db.comment,
-  { as: "comment" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
+
 
 // foreign key for students
 db.user.hasOne(
