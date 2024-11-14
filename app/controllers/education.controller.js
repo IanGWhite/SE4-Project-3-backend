@@ -13,14 +13,15 @@ exports.create = (req, res) => {
 
   // Create a Education
   const education = {
-    name: req.params.name,
-    city: req.params.city,
-    state: req.params.state,
-    startDate: req.params.startDate,
-    endDate: req.params.endDate,
-    degree: req.params.degree,
-    gpa: req.params.gpa,
-    coursework: req.params.coursework,
+    studentId: req.params.studentId,
+    name: req.body.name,
+    city: req.body.city,
+    state: req.body.state,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
+    degree: req.body.degree,
+    gpa: req.body.gpa,
+    coursework: req.body.coursework,
   };
   // Save Education in the database
   Education.create(education)

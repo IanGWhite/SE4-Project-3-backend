@@ -13,7 +13,8 @@ exports.create = (req, res) => {
 
   // Create a Interest
   const interest = {
-    description: req.params.description,
+    studentId: req.params.studentId,
+    description: req.body.description,
   };
   // Save Interest in the database
   Interest.create(interest)

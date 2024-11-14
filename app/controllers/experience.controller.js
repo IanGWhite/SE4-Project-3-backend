@@ -13,12 +13,13 @@ exports.create = (req, res) => {
 
   // Create a Experience
   const experience = {
-    name: req.params.name,
-    position: req.params.position,
-    state: req.params.state,
-    endDate: req.params.endDate,
-    startDate: req.params.startDate,
-    description: req.params.description,
+    studentId: req.params.studentId,
+    name: req.body.name,
+    position: req.body.position,
+    state: req.body.state,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
+    description: req.body.description,
   };
   // Save Experience in the database
   Experience.create(experience)

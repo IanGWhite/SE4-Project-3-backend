@@ -13,11 +13,12 @@ exports.create = (req, res) => {
 
   // Create a Contact
   const contact = {
-    firstName: req.params.firstName,
-    lastName: req.params.lastName,
-    city: req.params.city,
-    state: req.params.state,
-    email: req.params.email,
+    studentId: req.params.studentId,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    city: req.body.city,
+    state: req.body.state,
+    email: req.body.email
   };
   // Save Contact in the database
   Contact.create(contact)

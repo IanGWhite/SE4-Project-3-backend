@@ -13,11 +13,12 @@ exports.create = (req, res) => {
 
   // Create a Award
   const award = {
-    organization: req.params.organization,
-    title: req.params.title,
-    startDate: req.params.startDate,
-    endDate: req.params.endDate,
-    description: req.params.description,
+    studentId: req.params.studentId,
+    organization: req.body.organization,
+    title: req.body.title,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
+    description: req.body.description,
   };
   // Save Award in the database
   Award.create(award)
