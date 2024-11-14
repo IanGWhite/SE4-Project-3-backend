@@ -1,7 +1,7 @@
 const db = require("../models");
-const Resume = db.resume;
+const Link = db.link;
 const Op = db.Sequelize.Op;
-// Create and Save a new Resume
+// Create and Save a new Link
 exports.create = (req, res) => {
   // Validate request
   // if (!req.body.title) {
@@ -11,137 +11,139 @@ exports.create = (req, res) => {
   //   return;
   // }
 
-  // Create a Resume
-  const resume = {
-    summary: req.body.summary,
-    studentId: req.params.studentId
+  // Create a Link
+  const link = {
+    studentId: req.params.studentId,    
+    type: req.body.type,
+    link: req.body.link,
+    
   };
-  // Save Resume in the database
-  Resume.create(resume)
+  // Save Link in the database
+  Link.create(link)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Resume.",
+          err.message || "Some error occurred while creating the Link.",
       });
     });
 };
-// Retrieve all Resumes from the database.
+// Retrieve all Links from the database.
 exports.findAll = (req, res) => {
-  const resumeId = req.query.resumeId;
-  var condition = resumeId
+  const linkId = req.query.linkId;
+  var condition = linkId
     ? {
-        resumeId: {
-          [Op.like]: `%${resumeId}%`,
+        linkId: {
+          [Op.like]: `%${linkId}%`,
         },
       }
     : null;
 
-  Resume.findAll({ where: condition })
+  Link.findAll({ where: condition })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving resumes.",
+        message: err.message || "Some error occurred while retrieving links.",
       });
     });
 };
-// Retrieve all Resumes for a student from the database.
+// Retrieve all Links for a student from the database.
 exports.findAllForStudent = (req, res) => {
   const studentId = req.params.studentId;
 
-  Resume.findAll({ where: { studentId: studentId } })
+  Link.findAll({ where: { studentId: studentId } })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving resumes.",
+        message: err.message || "Some error occurred while retrieving links.",
       });
     });
 };
-// Find a single Resume with an id
+// Find a single Link with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  Resume.findByPk(id)
+  Link.findByPk(id)
     .then((data) => {
       if (data) {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Resume with id=${id}.`,
+          message: `Cannot find Link with id=${id}.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Resume with id=" + id,
+        message: "Error retrieving Link with id=" + id,
       });
     });
 };
-// Update a Resume by the id in the request
+// Update a Link by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
-  Resume.update(req.body, {
+  Link.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Resume was updated successfully.",
+          message: "Link was updated successfully.",
         });
       } else {
         res.send({
-          message: `Cannot update Resume with id=${id}. Maybe Resume was not found or req.body is empty!`,
+          message: `Cannot update Link with id=${id}. Maybe Link was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Resume with id=" + id,
+        message: "Error updating Link with id=" + id,
       });
     });
 };
-// Delete a Resume with the specified id in the request
-//todo: update to delete all items owned by resume (if not done automatically)
+// Delete a Link with the specified id in the request
+//todo: update to delete all items owned by link (if not done automatically)
 exports.delete = (req, res) => {
   const id = req.params.id;
-  Resume.destroy({
+  Link.destroy({
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Resume was deleted successfully!",
+          message: "Link was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete Resume with id=${id}. Maybe Resume was not found!`,
+          message: `Cannot delete Link with id=${id}. Maybe Link was not found!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Resume with id=" + id,
+        message: "Could not delete Link with id=" + id,
       });
     });
 };
-// Delete all Resumes from the database.
+// Delete all Links from the database.
 exports.deleteAll = (req, res) => {
-  Resume.destroy({
+  Link.destroy({
     where: {},
     truncate: false,
   })
     .then((nums) => {
-      res.send({ message: `${nums} Resumes were deleted successfully!` });
+      res.send({ message: `${nums} Links were deleted successfully!` });
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all resumes.",
+          err.message || "Some error occurred while removing all links.",
       });
     });
 };
