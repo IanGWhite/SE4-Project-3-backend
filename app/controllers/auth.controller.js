@@ -2,6 +2,7 @@ const db = require("../models");
 const authconfig = require("../config/auth.config");
 const User = db.user;
 const Session = db.session;
+const Student = db.student;
 const Op = db.Sequelize.Op;
 
 const { google } = require("googleapis");
@@ -58,6 +59,7 @@ exports.login = async (req, res) => {
 
   let user = {};
   let session = {};
+  let student = {};
 
   await User.findOne({
     where: {
@@ -115,6 +117,67 @@ exports.login = async (req, res) => {
       });
   }
 
+  //trying to find the student
+  await Student.findOne({
+    where: {
+      userId: user.id,
+      fName: firstName,
+      lName: lastName,
+      studentId: user.id,
+    },
+  })
+    .then((data) => {
+      if (data != null) {
+        student = data.dataValues;
+      } else {
+        // create a new Student and save to database
+        student = {
+          userId: user.id,
+          fName: firstName,
+          lName: lastName,
+          studentId: user.id,
+        };
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
+    });
+
+  //create student
+  if (student.id === undefined) {
+    console.log("need to get student's id");
+    console.log(student);
+    await Student.create(student)
+      .then((data) => {
+        console.log("student was registered");
+        student = data.dataValues;
+        // res.send({ message: "student was registered successfully!" });
+      })
+      .catch((err) => {
+        res.status(500).send({ message: err.message });
+      });
+  } else {
+    console.log(student);
+    // doing this to ensure that the student's name is the one listed with Google
+    student.userId = user.id;
+    student.fName = firstName;
+    student.lName = lastName;
+    console.log(student);
+    await Student.update(student, { where: { id: student.id } })
+      .then((num) => {
+        if (num == 1) {
+          console.log("updated student's name");
+        } else {
+          console.log(
+            `Cannot update Student with id=${student.id}. Maybe User was not found or req.body is empty!`
+          );
+        }
+      })
+      .catch((err) => {
+        console.log("Error updating Student with id=" + student.id + " " + err);
+      });
+  }
+
   // try to find session first
 
   await Session.findOne({
@@ -155,6 +218,7 @@ exports.login = async (req, res) => {
             fName: user.fName,
             lName: user.lName,
             userId: user.id,
+            studentId: student.id,
             token: session.token,
             // refresh_token: user.refresh_token,
             // expiration_date: user.expiration_date
@@ -196,6 +260,7 @@ exports.login = async (req, res) => {
           fName: user.fName,
           lName: user.lName,
           userId: user.id,
+          studentId: student.id,
           token: token,
           // refresh_token: user.refresh_token,
           // expiration_date: user.expiration_date
