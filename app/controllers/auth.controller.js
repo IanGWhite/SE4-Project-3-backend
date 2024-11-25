@@ -72,6 +72,8 @@ exports.login = async (req, res) => {
       } else {
         // create a new User and save to database
         user = {
+          fName: firstName,
+          lName: lastName,
           email: email,
           admin: 0
         };
@@ -97,6 +99,8 @@ exports.login = async (req, res) => {
   } else {
     console.log(user);
     // doing this to ensure that the user's name is the one listed with Google
+    user.fName = firstName;
+    user.lName = lastName;
     console.log(user);
     await User.update(user, { where: { id: user.id } })
       .then((num) => {
@@ -211,6 +215,8 @@ exports.login = async (req, res) => {
           // if the session is still valid, then send info to the front end
           let userInfo = {
             email: user.email,
+            fName: user.fName,
+            lName: user.lName,
             userId: user.id,
             studentId: student.id,
             token: session.token,
@@ -251,6 +257,8 @@ exports.login = async (req, res) => {
       .then(() => {
         let userInfo = {
           email: user.email,
+          fName: user.fName,
+          lName: user.lName,
           userId: user.id,
           studentId: student.id,
           token: token,
