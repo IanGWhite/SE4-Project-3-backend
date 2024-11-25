@@ -15,8 +15,6 @@ exports.create = (req, res) => {
   // Create a User
   const user = {
     id: req.body.id,
-    fName: req.body.fName,
-    lName: req.body.lName,
     email: req.body.email,
     admin: 0
     // refresh_token: req.body.refresh_token,
