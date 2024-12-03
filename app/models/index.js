@@ -278,22 +278,22 @@ db.resume.hasMany(
 
 
 // resume middleman has
-db.resumeAward.hasOne(
-  db.award,
-  {as: "award"},
+db.award.hasMany(
+  db.resumeAward,
+  {as: "resumeAward"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-db.resumeEducation.hasOne(
-  db.education,
-  {as: "education"},
+db.education.hasMany(
+  db.resumeEducation,
+  {as: "resumeEducation"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
 
-db.resumeExperience.hasOne(
-  db.experience,
-  {as: "experience"},
+db.experience.hasMany(
+  db.resumeExperience,
+  {as: "resumeExperience"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
