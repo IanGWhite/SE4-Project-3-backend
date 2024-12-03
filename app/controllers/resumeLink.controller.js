@@ -14,7 +14,8 @@ exports.create = (req, res) => {
   // Create a ResumeLink
   const resumeLink = {
     studentId: req.params.studentId,    
- 
+    resumeId: req.params.resumeId,
+    linkId: req.params.linkId,
     
   };
   // Save ResumeLink in the database

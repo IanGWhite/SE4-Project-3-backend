@@ -5,7 +5,7 @@ module.exports = (app) => {
 
   // Create a new ResumeProject for a Student
   //router.post("/:studentId/resumeProjects/", [authenticate], resumeProjects.create);
-  router.post("/:studentId/:resumeId/resumeProjects/", resumeProjects.create);
+  router.post("/:studentId/:resumeId/resumeProjects/:projectId/", resumeProjects.create);
 
   // Retrieve all ResumeProjects for a Student
   router.get(

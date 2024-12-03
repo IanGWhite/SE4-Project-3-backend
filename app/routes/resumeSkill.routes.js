@@ -1,30 +1,30 @@
 module.exports = (app) => {
-    const resumeProjects = require("../controllers/resumeProject.controller.js");
+    const resumeSkills = require("../controllers/resumeSkill.controller.js");
     const { authenticate } = require("../authorization/authorization.js");
     var router = require("express").Router();
   
-    // Create a new ResumeProject for a Student
-    //router.post("/:studentId/resumeProjects/", [authenticate], resumeProjects.create);
-    router.post("/:studentId/:resumeId/resumeProjects/", resumeProjects.create);
+    // Create a new ResumeSkill for a Student
+    //router.post("/:studentId/resumeSkills/", [authenticate], resumeSkills.create);
+    router.post("/:studentId/:resumeId/resumeSkills/:skillId", resumeSkills.create);
   
-    // Retrieve all ResumeProjects for a Student
+    // Retrieve all ResumeSkills for a Student
     router.get(
-      "/:studentId/:resumeId/resumeProjects/",
-      resumeProjects.findAllForResume
+      "/:studentId/:resumeId/resumeSkills/",
+      resumeSkills.findAllForResume
     );
   
-    // Retrieve a single ResumeProject with id
-    //router.get("/:studentId/resumeProjects/:id", [authenticate], resumeProjects.findOne);
-    router.get("/:studentId/:resumeId/resumeProjects/:id", resumeProjects.findOne);
+    // Retrieve a single ResumeSkill with id
+    //router.get("/:studentId/resumeSkills/:id", [authenticate], resumeSkills.findOne);
+    router.get("/:studentId/:resumeId/resumeSkills/:id", resumeSkills.findOne);
   
-    // Update a ResumeProject with id
-    router.put("/:studentId/:resumeId/resumeProjects/:id", resumeProjects.update);
+    // Update a ResumeSkill with id
+    router.put("/:studentId/:resumeId/resumeSkills/:id", resumeSkills.update);
   
-    // Delete a ResumeProject with id
-    router.delete("/:studentId/:resumeId/resumeProjects/:id", resumeProjects.delete);
+    // Delete a ResumeSkill with id
+    router.delete("/:studentId/:resumeId/resumeSkills/:id", resumeSkills.delete);
   
-    // Delete all ResumeProjects
-    router.delete("/:studentId/:resumeId/resumeProjects/deleteAll", resumeProjects.deleteAll);
+    // Delete all ResumeSkills
+    router.delete("/:studentId/:resumeId/resumeSkills/deleteAll", resumeSkills.deleteAll);
   
     app.use("/resume-t5/students", router);
   };

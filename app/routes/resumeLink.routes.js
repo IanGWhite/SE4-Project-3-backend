@@ -5,7 +5,7 @@ module.exports = (app) => {
 
   // Create a new ResumeLink for a Student
   //router.post("/:studentId/resumeLinks/", [authenticate], resumeLinks.create);
-  router.post("/:studentId/:resumeId/resumeLinks/", resumeLinks.create);
+  router.post("/:studentId/:resumeId/resumeLinks/:linkId/", resumeLinks.create);
 
 
   // Retrieve all ResumeLinks for a Student

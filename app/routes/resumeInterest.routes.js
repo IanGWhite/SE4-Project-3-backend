@@ -5,7 +5,7 @@ module.exports = (app) => {
 
   // Create a new Interest for a Student
   //router.post("/:studentId/resumeInterest/", [authenticate], resumeInterest.create);
-  router.post("/:studentId/:resumeId/resumeInterest/", resumeInterest.create);
+  router.post("/:studentId/:resumeId/resumeInterest/:interestId/", resumeInterest.create);
 
   // Retrieve all ResumeInterest for a Student
   router.get(

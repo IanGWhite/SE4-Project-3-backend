@@ -14,7 +14,8 @@ exports.create = (req, res) => {
   // Create a ResumeProject
   const resumeProject = {
     studentId: req.params.studentId,
-
+    resumeId: req.params.resumeId,
+    projectId: req.params.projectId,
   };
   // Save ResumeProject in the database
   ResumeProject.create(resumeProject)

@@ -278,50 +278,47 @@ db.resume.hasMany(
 
 
 // resume middleman has
-db.resumeAward.hasOne(
-  db.award,
-  {as: "award"},
+db.award.hasMany(
+  db.resumeAward,
+  {as: "resumeAward"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-db.resumeEducation.hasOne(
-  db.education,
-  {as: "education"},
+db.education.hasMany(
+  db.resumeEducation,
+  {as: "resumeEducation"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-
-db.resumeExperience.hasOne(
-  db.experience,
-  {as: "experience"},
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
-
-
-db.resumeInterest.hasOne(
-  db.interest,
-  {as: "interest"},
+db.experience.hasMany(
+  db.resumeExperience,
+  {as: "resumeExperience"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
 
-db.resumeLink.hasOne(
-  db.link,
-  {as: "link"},
+db.interest.hasMany(
+  db.resumeInterest,
+  {as: "resumeInterest"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
 
-db.resumeProject.hasOne(
-  db.project,
-  {as: "project"},
+db.link.hasMany(
+  db.resumeLink,
+  {as: "resumeLink"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
+db.project.hasMany(
+  db.resumeProject,
+  {as: "resumeProject"},
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
 
-db.resumeSkill.hasOne(
-  db.skill,
-  {as: "skill"},
+db.skill.hasMany(
+  db.resumeSkill,
+  {as: "resumeSkill"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
