@@ -290,6 +290,7 @@ db.education.hasMany(
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
+
 db.experience.hasMany(
   db.resumeExperience,
   {as: "resumeExperience"},

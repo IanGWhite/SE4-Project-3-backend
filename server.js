@@ -55,6 +55,10 @@ require("./app/routes/education.routes")(app);
 require("./app/routes/experience.routes")(app);
 require("./app/routes/interest.routes")(app);
 
+require("./app/routes/ResumeExperience.routes")(app);
+console.log('found ResumeExperience routes');
+require("./app/routes/ResumeAward.routes")(app);
+require("./app/routes/ResumeEducation.routes")(app);
 require("./app/routes/resumeInterest.routes")(app);
 require("./app/routes/resumeLink.routes")(app);
 require("./app/routes/resumeProject.routes")(app);
