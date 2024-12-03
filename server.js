@@ -59,6 +59,10 @@ require("./app/routes/ResumeExperience.routes")(app);
 console.log('found ResumeExperience routes');
 require("./app/routes/ResumeAward.routes")(app);
 require("./app/routes/ResumeEducation.routes")(app);
+require("./app/routes/resumeInterest.routes")(app);
+require("./app/routes/resumeLink.routes")(app);
+require("./app/routes/resumeProject.routes")(app);
+require("./app/routes/resumeSkill.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3025;

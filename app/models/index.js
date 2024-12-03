@@ -298,30 +298,28 @@ db.experience.hasMany(
 );
 
 
-db.resumeInterest.hasOne(
-  db.interest,
-  {as: "interest"},
+db.interest.hasMany(
+  db.resumeInterest,
+  {as: "resumeInterest"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
 
-db.resumeLink.hasOne(
-  db.link,
-  {as: "link"},
+db.link.hasMany(
+  db.resumeLink,
+  {as: "resumeLink"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-
-db.resumeProject.hasOne(
-  db.project,
-  {as: "project"},
+db.project.hasMany(
+  db.resumeProject,
+  {as: "resumeProject"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-
-db.resumeSkill.hasOne(
-  db.skill,
-  {as: "skill"},
+db.skill.hasMany(
+  db.resumeSkill,
+  {as: "resumeSkill"},
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
