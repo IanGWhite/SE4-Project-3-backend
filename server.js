@@ -55,6 +55,11 @@ require("./app/routes/education.routes")(app);
 require("./app/routes/experience.routes")(app);
 require("./app/routes/interest.routes")(app);
 
+require("./app/routes/resumeInterest.routes")(app);
+require("./app/routes/resumeLink.routes")(app);
+require("./app/routes/resumeProject.routes")(app);
+require("./app/routes/resumeSkill.routes")(app);
+
 // set port, listen for requests
 const PORT = process.env.PORT || 3025;
 if (process.env.NODE_ENV !== "test") {
