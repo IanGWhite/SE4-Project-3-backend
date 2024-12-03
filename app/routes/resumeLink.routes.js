@@ -11,7 +11,7 @@ module.exports = (app) => {
   // Retrieve all ResumeLinks for a Student
   router.get(
     "/:studentId/:resumeId/resumeLinks/",
-    resumeLinks.findAllForStudent
+    resumeLinks.findAllForResume
   );
 
   // Retrieve a single ResumeLink with id

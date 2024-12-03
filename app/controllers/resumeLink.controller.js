@@ -64,6 +64,20 @@ exports.findAllForStudent = (req, res) => {
       });
     });
 };
+// Retrieve all ResumeLinks for a resume from the database.
+exports.findAllForResume = (req, res) => {
+    const resumeId = req.params.resumeId;
+  
+    ResumeLink.findAll({ where: { resumeId: resumeId } })
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Some error occurred while retrieving resumeLinks.",
+        });
+      });
+  };
 // Find a single ResumeLink with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;

@@ -63,6 +63,20 @@ exports.findAllForStudent = (req, res) => {
       });
     });
 };
+// Retrieve all ResumeProjects for a resume from the database.
+exports.findAllForResume = (req, res) => {
+    const resumeId = req.params.resumeId;
+  
+    ResumeProject.findAll({ where: { resumeId: resumeId } })
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Some error occurred while retrieving resumeProjects.",
+        });
+      });
+  };
 // Find a single ResumeProject with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;

@@ -10,7 +10,7 @@ module.exports = (app) => {
   // Retrieve all ResumeProjects for a Student
   router.get(
     "/:studentId/resumeProjects/",
-    resumeProjects.findAllForStudent
+    resumeProjects.findAllForResume
   );
 
   // Retrieve a single ResumeProject with id
