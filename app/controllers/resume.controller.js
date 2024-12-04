@@ -13,6 +13,7 @@ exports.create = (req, res) => {
 
   // Create a Resume
   const resume = {
+    name: req.body.name,
     summary: req.body.summary,
     studentId: req.params.studentId
   };
